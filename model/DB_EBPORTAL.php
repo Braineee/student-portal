@@ -22,7 +22,8 @@ class DB_EBPORTAL {
             try{
                 $this->_pdo = new PDO("sqlsrv:Server=" . Config::get('mssql_ebportal/host') . ";Database=". Config::get('mssql_ebportal/db'), Config::get('mssql_ebportal/username'), Config::get('mssql_ebportal/password'));
             }catch (PDOException $e){
-                die($e->getMessage());
+                //die($e->getMessage());
+                //die("Oops! Connection could not be made at this time: It seems you are not connected or try reloading your browser.");
             }
         //}
     }

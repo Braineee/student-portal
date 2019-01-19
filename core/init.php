@@ -41,11 +41,11 @@ session_start();
 */
 
 //set token (CRSF)
-if (empty($_SESSION['security_token'])) {
+if (empty($_SESSION['applicant_token'])) {
   if (function_exists('mcrypt_create_iv')) {
-      $_SESSION['security_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+      $_SESSION['applicant_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
   } else {
-      $_SESSION['security_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+      $_SESSION['applicant_token'] = bin2hex(openssl_random_pseudo_bytes(32));
   }
 }
 

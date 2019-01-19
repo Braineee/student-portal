@@ -8,24 +8,26 @@
               <img src="<?= BASE_URL ?>assets/img/logo_new.png" alt="YABATECH" width="100px">
               <h4 class="deep-green login">Sign to Applicant Portal</h4>
             </div>
+            <div id="error">
+            </div>
           </div>
           <div class="col-md-12 col-sm-12">
             <form class="form-signin">
-              <label for="inputEmail" class="label" >
+              <label for="appnum" class="label" >
                   <b>Application number</b>
               </label>
-              <input type="text" id="inputEmail" class="form-control"  required autofocus>
+              <input type="text" id="appnum" name="appnum" class="form-control input-shadow"  placeholder="e.g: yct1234567 or 12345678AB">
 
 
-              <label for="inputPassword" class="label-password">
+              <label for="password" class="label-password">
                   <b>Password</b>
               </label>
-              <input type="password" id="inputPassword" class="form-control" required>
+              <input type="password" id="password" name="password" class="form-control input-shadow" placeholder="Your phone no. is your password">
               <div class="text-right margin-buttom-10">
                 <a href="#" class="forgot-password">Forgot password?</a>
               </div>
-
-              <button class="btn btn-md btn-success login-button btn-block form-control" type="submit">Sign in</button>
+              <input type="hidden" name="form_token" value="<?php echo hash_hmac('sha256', Token::generate_unique('login'), $token); ?>">
+              <button class="btn btn-md btn-success login-button btn-block form-control" type="submit" id="login">Sign in</button>
             </form>
           </div>
           <div class="col-md-12 col-sm-12 margin-10">
@@ -41,4 +43,4 @@
         </div>
     </div>
   </body>
-</html>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>ajax/login.js"></script>

@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <?php
+  		$token = $_SESSION['applicant_token'];
+  	?>
+    <meta name="csrf-token" content="<?= $_SESSION['applicant_token'] ?>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -10,8 +14,13 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-    <link href="<?= BASE_URL ?>assets/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="<?= BASE_URL ?>assets/css/login.css" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>assets/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/fonts/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/login.css" rel="stylesheet" >
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="<?= BASE_URL; ?>assets/js/jquery-3.2.1.min.js"></script>
   </head>

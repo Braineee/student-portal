@@ -123,19 +123,23 @@ class User {
 
 				//check if the entry session of the student matches the current entry session
 				if(!$this->data()->EntrySessionID == $_SESSION['current_application_session_ebportaldb']){
+					unset($_SESSION['current_application_session_studentdb']);
+					unset($_SESSION['current_application_session_ebportaldb']);
 					return "{$appnum} Can not login for this session";
 					die();
 				}
 
 				//validate the password
-				if(!$this->data()->Phone == $password || $password == 'i@mApplicant' || $password == 'schoolfees&&'){
+				if(!$this->data()->Phone == $password || !$password == 'i@mApplicant' || !$password == 'schoolfees&&'){
+					unset($_SESSION['current_application_session_studentdb']);
+					unset($_SESSION['current_application_session_ebportaldb']);
 					return "You entered a wwrong password";
 					die();
 				}
 
 				//check if the student is cleared (in e-screening)
 				$appnum = $this->data()->Appnum;
-				$get_clerance_status = DB_STUDENT::getInstance()
+				$get_clerance_status = DB_EBPORTAL::getInstance()
 				->get('vw_Clearance', array('Appnum','=',$appnum));
 				$clerance_status = $get_clerance_status->count();
 
@@ -153,8 +157,10 @@ class User {
 
 				//confirm clearance status
 				if($clerance_status == 0){
+					unset($_SESSION['current_application_session_studentdb']);
+					unset($_SESSION['current_application_session_ebportaldb']);
 					return 'You have not been recommeded to pay school fees yet...<br>
-									Visit Yabatech <a href="http://portal.yabatech.edu.ng/escreening/" target="_blank">e-screening site or see your clearance officer</a>';
+									Please visit Yabatech E-Screening site or see your clearance officer for more details';
 					die();
 				}
 
