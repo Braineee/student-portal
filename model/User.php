@@ -109,7 +109,7 @@ class User {
 			$user = $this->find($appnum);
 			// return this if the user is not found
 			if(!$user){
-				return "Application number not found";
+				return "App. number does not exists.";
 				die();
 			}
 
@@ -122,18 +122,20 @@ class User {
 				$_SESSION['current_application_session_ebportaldb'] = Intval($_SESSION['current_application_session_studentdb']) + 31;//calculate the session for EBPORTAL DB
 
 				//check if the entry session of the student matches the current entry session
-				if(!$this->data()->EntrySessionID == $_SESSION['current_application_session_ebportaldb']){
+				if($this->data()->EntrySessionID != $_SESSION['current_application_session_ebportaldb']){
+					$this->_isLoggedin = false;
 					unset($_SESSION['current_application_session_studentdb']);
 					unset($_SESSION['current_application_session_ebportaldb']);
-					return "{$appnum} Can not login for this session";
+					return "You can not login for this session.";
 					die();
 				}
 
 				//validate the password
-				if(!$this->data()->Phone == $password || !$password == 'i@mApplicant' || !$password == 'schoolfees&&'){
+				if($this->data()->Phone != $password && $password != 'i@mApplicant' && $password != 'schoolfees&&'){
+					$this->_isLoggedin = false;
 					unset($_SESSION['current_application_session_studentdb']);
 					unset($_SESSION['current_application_session_ebportaldb']);
-					return "You entered a wwrong password";
+					return "You entered a wrong password";
 					die();
 				}
 
@@ -157,10 +159,11 @@ class User {
 
 				//confirm clearance status
 				if($clerance_status == 0){
+					$this->_isLoggedin = false;
 					unset($_SESSION['current_application_session_studentdb']);
 					unset($_SESSION['current_application_session_ebportaldb']);
-					return 'You have not been recommeded to pay school fees yet...<br>
-									Please visit Yabatech E-Screening site or see your clearance officer for more details';
+					return 'You have not been recommeded to pay school fees yet.<br>
+									Please visit Yabatech E-Screening site or see your clearance officer for more details.';
 					die();
 				}
 
@@ -171,8 +174,10 @@ class User {
 
 					$hashCheck = DB_STUDENT::getInstance()->get('applicant_session',array('Appnum','=',$appnum));
 					if(!$hashCheck->count()){
+						$session_id = mt_rand(00000, 99999);
 						$log_student = new CrudStudent();
-						$log_student = create('applicant_session',array(
+						$log_student->create('applicant_session', array(
+							'ID' => $session_id,
 							'Appnum' => $appnum,
 							'Hash' => $hash,
 							'DateLoggedin' => date('Y-m-d')

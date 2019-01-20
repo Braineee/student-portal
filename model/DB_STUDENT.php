@@ -149,13 +149,14 @@ class DB_STUDENT {
                }
                $x++;
            }
-           $sql = "INSERT INTO {$table} (`" . implode('`, `', $keys). "`) VALUES ({$values})"; // execute the sql statement by imploding the field array keys and values
+           $sql = "INSERT INTO {$table} (" . implode(', ', $keys). ") VALUES ({$values})"; // execute the sql statement by imploding the field array keys and values
 
            // check if the sql executed was successfull
            if (!$this->query($sql, $fields)->error()){
                return true;// return true if the sql executed successfully
            }
        }
+
        return false;// return this if the above fails
    }
 

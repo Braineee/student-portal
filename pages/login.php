@@ -26,7 +26,7 @@
               <div class="text-right margin-buttom-10">
                 <a href="#" class="forgot-password">Forgot password?</a>
               </div>
-              <input type="hidden" name="form_token" value="<?php echo hash_hmac('sha256', Token::generate_unique('login'), $token); ?>">
+              <input type="hidden" name="form_token" id="form_token" value="<?php echo hash_hmac('sha256', Token::generate_unique('login'), $token); ?>">
               <button class="btn btn-md btn-success login-button btn-block form-control" type="submit" id="login">Sign in</button>
             </form>
           </div>

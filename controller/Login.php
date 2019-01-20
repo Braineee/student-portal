@@ -23,6 +23,10 @@ if(!isset($_POST)){
   die();
 }
 
+//get the post valuess
+extract($_POST);
+
+
 //validate the session token
 if(!isset($form_token)){
   exit(json_encode(['error' => 'no form token.']));
@@ -42,13 +46,13 @@ $password = sanitize($password, 'string');
 
 //validate the input
 if(!isset($appnum) || !isset($password)){
-  exit(json_encode(['response' => 'Please fill in the required fields']));
+  exit(json_encode(['error' => 'Please fill in the required fields']));
   die();
 }
 
 //check if the inputs are empty
 if($appnum == "" && $password == ""){
-  exit(json_encode(['response' => 'Please enter your app number and password']));
+  exit(json_encode(['error' => 'Please enter your app number and password']));
   die();
 }
 
@@ -58,7 +62,7 @@ try{
 
   $login = $applicant->login($appnum, $password, $remember = true);
 
-  exit(json_encode([$login]));
+  $login == 'true' ? exit(json_encode(['success' => $login])) : exit(json_encode(['error' => $login]));
 
 }catch(Exception $e){
   die($e->getMessage());
