@@ -8,10 +8,11 @@
   backdrop-filter: saturate(180%) blur(20px);
 }
 .site-header a {
-  color: #999;
+  color: #15291b;
   transition: ease-in-out color .15s;
 }
 .site-header a:hover {
+  background-color:#15291b !important;
   color: #fff;
   text-decoration: none;
 }
@@ -23,7 +24,7 @@
 }
 
 .text-green{
-  color:#15291b;
+  color:#15291b !important;
 }
 
 a:hover{
