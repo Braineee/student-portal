@@ -1,6 +1,12 @@
 
-
-  <body>
+<?php
+// redirect the user if he or she is looged in
+ if($applicant->isLoggedin()){
+  redirect('?pg=home');
+  die();
+}
+?>
+  <body class="login-body">
     <div class="container" style="">
         <div class="col-md-4 col-sm-6 offset-4">
           <div class="col-md-12 col-sm-12">

@@ -1,12 +1,14 @@
 html,
 
 body {
-  background-image: linear-gradient(to bottom, #ffcc00, #ffffff);
-  height: 100%;
   font-family: 'Open Sans', Nunito;
+  background-size: cover;
+  height: 100%;
+  
 }
 
-body {
+.login-body {
+  background-image: linear-gradient(to bottom, #ffcc00, #ffffff);
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;

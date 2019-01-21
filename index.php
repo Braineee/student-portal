@@ -7,13 +7,13 @@ if (!isset($_GET["pg"]) || $_GET["pg"] == ""){
     $_GET["pg"] = "login";
 }
 
-$student = new User(); //current user
+$applicant = new User();
 
-// TODO! : check if the user is logged in
-if($student->isLoggedin()){
-  var_dump($student->isLoggedin());
+if($applicant->isLoggedin()){
+  // Get the user data
+  $_SESSION['applicant_details'] = $applicant->data();
 }else{
-    $_GET["pg"] = "login";// go to the login page if the user is not logged in
+  $_GET["pg"] = "login";// go to the login page if the user is not logged in
 }
 
 
@@ -28,9 +28,7 @@ include(ROOT_PATH . "inc/head.php");
 
 if($page_name != 'login'){
   //include the navbar
-  //include(ROOT_PATH . "inc/navbar.php");
-  //include the sidebar
-  //include(ROOT_PATH . "inc/sidebar.php");
+  include(ROOT_PATH . "inc/navbar.php");
 }
 
 //check the file
@@ -45,5 +43,5 @@ if (file_exists($filename)) {
 
 if($page_name != 'login'){
   //include footer
-  //include(ROOT_PATH . "inc/footer.php");
+  include(ROOT_PATH . "inc/footer.php");
 }

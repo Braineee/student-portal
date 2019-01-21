@@ -167,6 +167,18 @@ class User {
 					die();
 				}
 
+				// Get users image
+				$get_picture = DB_EBPORTAL::getInstance()->
+			  get('onlineAppImages', array('appnum','=',$appnum));
+				if($get_picture->count() > 0){
+					$picture = $get_picture->first()->imagename;
+					$_SESSION['applicant_picture'] = "http://portal.yabatech.edu.ng/applications/applicantarea/passports/{$picture}";
+				}else{
+					$picture = $get_picture->first()->imagename;
+					$_SESSION['applicant_picture'] = "<?= BASE_URL ?>assets/img/avatar.png";
+				}
+
+
 				//validate and create students session
 				Session::put($this->_sessionName, $appnum);
 				if($remember){

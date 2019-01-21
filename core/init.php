@@ -20,11 +20,11 @@ $GLOBALS["config"] = array(
 		'db' => 'student'
 		),
 	"remember" => array(
-		'cookies_name' => 'hash',
+		'cookies_name' => 'yct_applicant_hash',
 		'cookies_expiry' => 7200 // keep the user logged in for 2hrs
 		),
 	"session" => array(
-		'session_name' => 'user',
+		'session_name' => 'yct_applicant_user',
 		'token_name' => 'token'
 		)
 );
