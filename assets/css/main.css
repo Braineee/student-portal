@@ -51,3 +51,27 @@ a:hover{
   position: relative;
   z-index: 998;
 }
+
+.payment-button{
+  background-image: -webkit-linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important;  /* Chrome 10-25, Safari 5.1-6 */
+  background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color:#cb2431;
+  border: solid 1px  #e0e0e0;
+}
+
+.payment-button:hover{
+  background: #cb2431 !important;
+  color: #fff;
+}
+
+.back-button{
+  background-image: -webkit-linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important;  /* Chrome 10-25, Safari 5.1-6 */
+  background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color:#007bff;;
+  border: solid 1px  #e0e0e0;
+}
+
+.back-button:hover{
+  background: #007bff !important;
+  color: #fff;
+}

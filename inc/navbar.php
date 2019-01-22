@@ -21,10 +21,10 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Other links</b></a>
           <div class="dropdown-menu" aria-labelledby="dropdown07">
-            <a class="dropdown-item" href="#"><img src="<?= BASE_URL ?>assets/icons/user.svg" alt="user_icon" width="20px" height="20px">&ensp;Biodata</a>
-            <a class="dropdown-item" href="#"><img src="<?= BASE_URL ?>assets/icons/money_2.svg" alt="user_icon" width="20px" height="20px">&ensp;Fee payment & registration</a>
-            <a class="dropdown-item" href="#"><img src="<?= BASE_URL ?>assets/icons/hostel.svg" alt="user_icon" width="20px" height="20px">&ensp;Hostel &Accomodation</a>
-            <a class="dropdown-item" href="#"><img src="<?= BASE_URL ?>assets/icons/checklist.svg" alt="user_icon" width="20px" height="20px">&ensp;Payment Confirmation & validation</a>
+            <a class="dropdown-item" href="?pg=biodata"><img src="<?= BASE_URL ?>assets/icons/user.svg" alt="user_icon" width="20px" height="20px">&ensp;Biodata</a>
+            <a class="dropdown-item" href="?pg=fees"><img src="<?= BASE_URL ?>assets/icons/money_2.svg" alt="money" width="20px" height="20px">&ensp;Fee payment & registration</a>
+            <a class="dropdown-item" href="?pg=hostel"><img src="<?= BASE_URL ?>assets/icons/hostel.svg" alt="hostel" width="20px" height="20px">&ensp;Hostel &Accomodation</a>
+            <a class="dropdown-item" href="?pg=payments"><img src="<?= BASE_URL ?>assets/icons/checklist.svg" alt="check" width="20px" height="20px">&ensp;Payment Confirmation & validation</a>
           </div>
         </li>
       </ul>
@@ -32,7 +32,7 @@
         <img class="inset" src="<?= $_SESSION['applicant_picture'] ?>" alt="applicant">&nbsp;
         <b style="color:#fff;"><?= strtolower($_SESSION['applicant_details']->Surname) ?> <?= strtolower($_SESSION['applicant_details']->Firstname) ?></b>&ensp;
         <a href="?pg=logout">
-          <img src="<?= BASE_URL ?>assets/icons/logout.svg" alt="logout" width="30px" data-toggle="tooltip" data-placement="bottom" title="Click this button to sign out">
+          <img src="<?= BASE_URL ?>assets/icons/logout.svg" alt="logout" width="20px" data-toggle="tooltip" data-placement="bottom" title="Click this button to sign out">
         </a>
       </div>
     </div>

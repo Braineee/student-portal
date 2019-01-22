@@ -178,6 +178,15 @@ class User {
 					$_SESSION['applicant_picture'] = "<?= BASE_URL ?>assets/img/avatar.png";
 				}
 
+				// initialize the student program type acronym for (bsc, pgd, cp)
+				if($this->data()->PCAcronym == 'B.SC(ED)' || $this->data()->PCAcronym == 'PGD' || $this->data()->PCAcronym == 'CP'){
+					$_SESSION['program_type_acronym'] = $this->data()->PCAcronym;
+				}
+
+				// initialize the student program type acronym for (hnd, nd)
+				if($this->data()->PCAcronym == 'HND' || $this->data()->PCAcronym == 'ND'){
+					$_SESSION['program_type_acronym'] = $this->data()->PCAcronym .' '. $this->data()->PTName;
+				}
 
 				//validate and create students session
 				Session::put($this->_sessionName, $appnum);

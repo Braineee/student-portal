@@ -12,7 +12,8 @@
     <title>Applicant Portal</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <!--link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet"-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>assets/css/bootstrap.css" rel="stylesheet" >
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>assets/css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL; ?>assets/css/toastr.min.css">

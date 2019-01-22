@@ -6,6 +6,40 @@
           <?php include('inc/sidebar.php') ?>
 
           <div class="col-md-9">
+            <!-- error -->
+            <?php
+              if(Session::exists('error')){
+                echo "<div class='alert alert-dismissable alert-danger'>
+                          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                          </button>
+
+                              <i class='fa fa-exclamation-circle'></i>&ensp;<strong>". Session::flash('error') . "</strong>
+
+                      </div>";
+              }
+              if(Session::exists('info')){
+                echo "<div class='alert alert-dismissable alert-warning'>
+                          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                          </button>
+
+                              <i class='fa fa-exclamation-triangle'></i>&ensp;<strong>". Session::flash('info') . "</strong>
+
+                      </div>";
+              }
+              if(Session::exists('success')){
+                echo "<div class='alert alert-dismissable alert-success'>
+                          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                          </button>
+
+                              <i class='fa fa-check'></i>&ensp;<strong>". Session::flash('success') . "</strong>
+
+                      </div>";
+              }
+            ?>
+            <!-- /error -->
             <div class="">
               <h3>Dashboard</h3>
               <hr>
@@ -38,7 +72,7 @@
                 <div class="container py-3">
                   <div class="col-md-12 card" style="padding-left: 0px;padding-right: 0px;"
                        data-toggle="tooltip" data-placement="bottom" title="Just click this bar">
-                    <a href="?pg=biodata" class="text-green">
+                    <a href="?pg=fees" class="text-green">
                     <div class="row">
                         <div class="col-md-4 col-sm-4 text-center v-align py-4">
                           <img src="<?= BASE_URL ?>assets/icons/money_2.svg" alt="user_icon" width="50px" height="50px">

@@ -16,7 +16,6 @@ if($applicant->isLoggedin()){
   $_GET["pg"] = "login";// go to the login page if the user is not logged in
 }
 
-
 // Check if pg exits
 if (isset($_GET["pg"])){
     //If pg exists, assign its value to $page_name
@@ -30,6 +29,14 @@ if($page_name != 'login'){
   //include the navbar
   include(ROOT_PATH . "inc/navbar.php");
 }
+
+//check the school fees status
+if($page_name != 'login' && $page_name != 'logout'){
+  if(!isset($_SESSION['school_fees_payment_status'])){
+    include('controller/CheckSchoolFeesStatus.php');
+  }
+}
+
 
 //check the file
 $filename = ROOT_PATH ."pages/" . $page_name . ".php";

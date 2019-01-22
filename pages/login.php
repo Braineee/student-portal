@@ -12,7 +12,7 @@
           <div class="col-md-12 col-sm-12">
             <div class="text-center">
               <img src="<?= BASE_URL ?>assets/img/logo_new.png" alt="YABATECH" width="100px">
-              <h4 class="deep-green login">Sign to Applicant Portal</h4>
+              <h4 class="deep-green login">Sign in to Applicant Portal</h4>
             </div>
             <div id="error">
             </div>
@@ -20,13 +20,13 @@
           <div class="col-md-12 col-sm-12">
             <form class="form-signin">
               <label for="appnum" class="label" >
-                  <b>Application number</b>
+                  Application number
               </label>
               <input type="text" id="appnum" name="appnum" class="form-control input-shadow"  placeholder="e.g: yct1234567 or 12345678AB">
 
 
               <label for="password" class="label-password">
-                  <b>Password</b>
+                  Password
               </label>
               <input type="password" id="password" name="password" class="form-control input-shadow" placeholder="Your phone no. is your password">
               <div class="text-right margin-buttom-10">
