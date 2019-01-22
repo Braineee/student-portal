@@ -1,3 +1,4 @@
+<?php redirect('?pg=under-construction'); ?>
 <div class="py-5" style="margin-top: 50px;">
   <div class="container">
       <div class="row">

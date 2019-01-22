@@ -16,7 +16,10 @@
           <a class="nav-link" href="http://yabatech.edu.ng"><b>College home</b></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://portal.edu.ng/helpdesk"><b>Helpdesk</b></a>
+          <a class="nav-link" href="http://portal.yabatech.edu.ng/portalplus"><b>Student portal</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://portal.yabatech.edu.ng/helpdesk"><b>Helpdesk</b></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>Other links</b></a>

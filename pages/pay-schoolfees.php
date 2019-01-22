@@ -55,7 +55,7 @@
               </div>
               <section>
           </div>
-          <a href="?pg=fees" class="btn btn-primary btn-md pull-right"><i class="fa fa-arrow-left"></i>&ensp;<b>Go back</b></a>
+          <a href="?pg=fees" class="btn back-button btn-md pull-right"><i class="fa fa-arrow-left"></i>&ensp;<b>Go back</b></a>
         </div>
 
     </div>

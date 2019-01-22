@@ -29,7 +29,14 @@
   <div>
     <small>school fees status:</small><br>
     <img src="<?= BASE_URL ?>assets/icons/status.svg" alt="user_icon" width="20px" height="20px"> &ensp;
-    <b>NOT PAID</b>
+    <b><?php if(isset($_SESSION['school_fees_payment_status'])){
+      if($_SESSION['school_fees_payment_status'] == 'NOT_PAID'){echo 'NOT PAID';}
+      if($_SESSION['school_fees_payment_status'] == 'PAID_COMPLETE'){echo 'PAID COMPLETE';}
+      if($_SESSION['school_fees_payment_status'] == 'NOT_COMPLETED'){echo 'NOT COMPLETED';}
+      if($_SESSION['school_fees_payment_status'] == 'PAYMENT_NOT_DEFINED'){echo 'PAYMENT NOT DEFINED';}
+      if($_SESSION['school_fees_payment_status'] == 'NOT_DEFINED'){echo 'NOT DEFINED';}
+    }?></b>
+
   </div>
   <br>
   <div>

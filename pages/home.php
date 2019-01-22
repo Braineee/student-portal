@@ -92,6 +92,11 @@
               </section>
             </div>
             <br>
+            <?php
+              //CHECK PAYMENT
+              if(isset($_SESSION['school_fees_payment_status'])){
+                if($_SESSION['school_fees_payment_status'] == 'PAID_COMPLETE'){
+            ?>
             <div class="">
               <h3>Admission</h3>
               <hr>
@@ -144,6 +149,11 @@
               </section>
             </div>
             <br>
+            <?php
+                  }
+              }
+              //END OF CHECK PAYMENT
+            ?>
             <div class="">
               <h3>Others</h3>
               <hr>
@@ -153,7 +163,7 @@
                 <div class="container py-3">
                   <div class="col-md-12 card" style="padding-left: 0px;padding-right: 0px;"
                        data-toggle="tooltip" data-placement="bottom" title="Just click this bar">
-                    <a href="?pg=biodata" class="text-green">
+                    <a href="?pg=hostel" class="text-green">
                     <div class="row">
                         <div class="col-md-4 col-sm-4 text-center v-align py-4">
                           <img src="<?= BASE_URL ?>assets/icons/hostel.svg" alt="user_icon" width="50px" height="50px">
@@ -196,6 +206,5 @@
               </section>
             </div>
           </div>
-
         </div>
       </div>

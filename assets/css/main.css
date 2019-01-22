@@ -1,6 +1,15 @@
 /*
  * Custom translucent site header
  */
+ body {
+   /*font-family: 'Open Sans', Nunito;*/
+   font-family: 'Open Sans', sans-serif;
+   font-family: 'Roboto', sans-serif;
+   background-size: cover;
+   height: 100%;
+   color: #24292e;
+
+ }
 
 .site-header {
   background-color: rgba(0, 0, 0, .85);

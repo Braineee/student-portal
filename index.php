@@ -23,11 +23,15 @@ if (isset($_GET["pg"])){
 }
 
 // include the header file
+if(strpos($page_name, 'print') === false ){
 include(ROOT_PATH . "inc/head.php");
+}
 
 if($page_name != 'login'){
-  //include the navbar
-  include(ROOT_PATH . "inc/navbar.php");
+  if(strpos($page_name, 'print') === false ){
+    //include the navbar
+    include(ROOT_PATH . "inc/navbar.php");
+  }
 }
 
 //check the school fees status
@@ -45,7 +49,7 @@ if (file_exists($filename)) {
     // Pass the $page_name to the include path bellow
     include(ROOT_PATH . "pages/". $page_name .".php");
 }else{
-    include(ROOT_PATH . "pages/not_found.php");
+    include(ROOT_PATH . "pages/not-found.php");
 }
 
 if($page_name != 'login'){

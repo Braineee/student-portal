@@ -3,7 +3,7 @@
 $amount = 0;
 
 //check if it is direct entry or normal Application
-strpos($_SESSION['applicant_details']->program, '200') == true ?
+strpos($_SESSION['applicant_details']->program, '200') !== false ?
 $payment_to_select = "CoursefeesYrDE_New" : $payment_to_select = "CoursefeesYr1_New";
 
 //check if the neccessary parameters are available
@@ -22,7 +22,24 @@ try{
     prog_status = '{$_SESSION['applicant_details']->PTAcronym}' AND
     course = '{$_SESSION['applicant_details']->program}'
   ";
+
+
   $get_payment_details = DB_STUDENT::getInstance()->query($query);
+
+  //check for errors
+  if(!is_object($get_payment_details)){
+    $log = new Logger(ROOT_PATH ."error_log.html");
+    $log->setTimestamp("D M d 'y h.i A");
+    $log->putLog("\n Error Message: controller/checkschoolfeesstatus :: variable (get_payment_details) did not drop an object >> ".$_SESSION['applicant_details']->Appnum);
+    die("<br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+  }
+  if($get_payment_details->error() == true){
+    $log = new Logger(ROOT_PATH ."error_log.html");
+    $log->setTimestamp("D M d 'y h.i A");
+    $log->putLog("\n Error Message: controller/checkschoolfeesstatus :: ".$get_payment_details->error_message()[2].">> ".$_SESSION['applicant_details']->Appnum);
+    die("<br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+  }
+  //end of check for errors
 
   //var_dump($get_payment_details);
   switch ($get_payment_details->count()) {
@@ -58,7 +75,21 @@ try{
         ";
 
         $get_applicant_school_fees_status = DB_EBPORTAL::getInstance()->query($query);
-        //var_dump($get_applicant_school_fees_status);
+
+        //check for errors
+        if(!is_object($get_applicant_school_fees_status)){
+          $log = new Logger(ROOT_PATH ."error_log.html");
+          $log->setTimestamp("D M d 'y h.i A");
+          $log->putLog("\n Error Message: controller/checkschoolfeesstatus :: variable (get_applicant_school_fees_status) did not drop an object >> ".$_SESSION['applicant_details']->Appnum);
+          die("<br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+        }
+        if($get_applicant_school_fees_status->error() == true){
+          $log = new Logger(ROOT_PATH ."error_log.html");
+          $log->setTimestamp("D M d 'y h.i A");
+          $log->putLog("\n Error Message: controller/checkschoolfeesstatus :: ".$get_applicant_school_fees_status->error_message()[2].">> ".$_SESSION['applicant_details']->Appnum);
+          die("<br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+        }
+        //end of check for errors
 
         //if applicant hass paid flag applicant_school_fees_payment_status as 'PAID_COMPLETE' esle as 'NOT_COMPLETED'
           // if its partime check if the ammount paid is equal half the actual amount
@@ -87,7 +118,7 @@ try{
               if($total_applicant_payment >= $amount_to_pay){
                 //flag as complete payments
                 $_SESSION['school_fees_payment_status'] = 'PAID_COMPLETE';
-                Session::flash('success', 'Your have completed your school fees payment please proceed to generate your matric number.');
+                Session::flash('success', 'Your have completed your school fees payment please proceed to generate your matric number if you have not.');
               }else{
                 //flag as incomplete payments
                 $_SESSION['school_fees_payment_status'] = 'NOT_COMPLETED';
