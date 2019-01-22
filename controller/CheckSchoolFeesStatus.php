@@ -1,6 +1,7 @@
 <?php
 //initialize the amonut
 $amount = 0;
+$_SESSION['amount_to_pay'] = 0;
 
 //check if it is direct entry or normal Application
 strpos($_SESSION['applicant_details']->program, '200') !== false ?
@@ -45,7 +46,7 @@ try{
   switch ($get_payment_details->count()) {
     case "0":
       // schoolfees is not set
-      Session::flash('info', 'You have school fees has not been set please check back later.');
+      Session::flash('info', 'Your school fees has not been set please check back later.');
       //set payment status as 'NOT_SET'
       $_SESSION['school_fees_payment_status'] = 'NOT_SET';
       break;
@@ -63,6 +64,8 @@ try{
         //if it is parttime divide the school fees by 2 to get the half payment
         $_SESSION['applicant_details']->PTAcronym == 'PT' ? $amount_to_pay = ($real_amount/2) :  $amount_to_pay = $real_amount;
 
+        //initialize the real amount session
+        $_SESSION['real_amount'] = $amount_to_pay;
 
         //check if the applicant has payed school fees
         $query="
@@ -91,12 +94,13 @@ try{
         }
         //end of check for errors
 
+        
         //if applicant hass paid flag applicant_school_fees_payment_status as 'PAID_COMPLETE' esle as 'NOT_COMPLETED'
           // if its partime check if the ammount paid is equal half the actual amount
           $get_applicant_school_fees_status->count() >= 0 ? $status_count = 1 : $status_count = $get_applicant_school_fees_status->count();
           switch ($status_count) {
             case '0':
-              // applicant payment status is 0 i.e applicant has not made school fees payment
+              // flag as NOT PAID
               $_SESSION['school_fees_payment_status'] = 'NOT_PAID';
               $_SESSION['amount_to_pay'] = $amount_to_pay;
               Session::flash('info', 'Your have not paid your school fees.');
@@ -118,6 +122,7 @@ try{
               if($total_applicant_payment >= $amount_to_pay){
                 //flag as complete payments
                 $_SESSION['school_fees_payment_status'] = 'PAID_COMPLETE';
+                $_SESSION['amount_to_pay'] = $amount_to_pay;
                 Session::flash('success', 'Your have completed your school fees payment please proceed to generate your matric number if you have not.');
               }else{
                 //flag as incomplete payments

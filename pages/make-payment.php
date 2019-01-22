@@ -1,3 +1,70 @@
+<?php
+// check if payment status exists
+if(!isset($_SESSION['school_fees_payment_status'])){
+  redirect('?pg=home');
+  die();
+}
+
+//check if the person has not PAID
+if($_SESSION['school_fees_payment_status'] != 'NOT_PAID' && $_SESSION['school_fees_payment_status'] != 'NOT_COMPLETED'){
+
+  if($_SESSION['school_fees_payment_status'] == 'NOT_DEFINED'){
+    Session::flash('error', 'Err: Could not get school fees details.');
+    redirect('?pg=home');
+    die();
+  }
+  if($_SESSION['school_fees_payment_status'] == 'PAYMENT_NOT_DEFINED'){
+    Session::flash('error', 'Err: Could not get school fees payment status.');
+    redirect('?pg=home');
+    die();
+  }
+  if($_SESSION['school_fees_payment_status'] == 'NOT_SET'){
+    Session::flash('info', 'Your school fees has not been set please check back later.');
+    redirect('?pg=home');
+    die();
+  }
+  if($_SESSION['school_fees_payment_status'] == 'PAID_COMPLETE'){
+    Session::flash('success', 'Your have completed your school fees payment please proceed to generate your matric number if you have not.');
+    redirect('?pg=home');
+    die();
+  }
+  redirect('?pg=home');
+  die();
+
+}
+
+//get payment description
+try {
+  $get_payment_description = DB_EBPORTAL::getInstance()->get('YCTPAY_Payments', array('PaymentID','=',5));
+
+  // check for errors
+  if(!is_object($get_payment_description)){
+    $log = new Logger(ROOT_PATH ."error_log.html");
+    $log->setTimestamp("D M d 'y h.i A");
+    $log->putLog("\n Error Message: pages/make-payment :: variable (get_payment_description) did not drop an object >> ".$_SESSION['applicant_details']->Appnum);
+    die("<br><br><br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+  }
+  if($get_payment_description->error() == true){
+    $log = new Logger(ROOT_PATH ."error_log.html");
+    $log->setTimestamp("D M d 'y h.i A");
+    $log->putLog("\n Error Message: pages/make-payment ::".$get_payment_description->error_message()[2].">> ".$_SESSION['applicant_details']->Appnum);
+    die("<br><br><br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+  }
+  //end of check for errors
+
+  $payment_description = $get_payment_description->first()->PaymentName;
+
+}catch (\Exception $e) {
+  $log = new Logger(ROOT_PATH ."error_log.txt");
+  $log->setTimestamp("D M d 'y h.i A");
+  $log->putLog("\n Error Message: ".$e->getMessage().">> ".$_SESSION['applicant_details']->Appnum);
+  die("<br><br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
+}
+
+?>
+
+
+
 <div class="py-5" style="margin-top: 50px;">
   <div class="container">
       <div class="row">
@@ -79,7 +146,7 @@
                   <span class="text-muted">Amount:</span>
                 </td>
                 <th>
-                  20000
+                  &#8358;<?= number_format($_SESSION['amount_to_pay']); ?>
                 </th>
               </tr>
             </table>
@@ -88,11 +155,11 @@
                 <span style="color:#cb2431;"><b>Caution.</b></span>
                 <p>Please ensure you have confirmed your details before proceeding to make this payment.</p>
                 <hr>
-    						<input name="studentnumber" type="hidden" id="studentnumber" value="<?PHP echo $std_app_num; ?>" />
-    						<input name="sessionid" type="hidden" id="sessionid" value="<?PHP echo $new_session; ?>" />
-    						<input name="paymentid" type="hidden" id="paymentid" value="<?PHP echo $payment_id; ?>" />
-    						<input name="paymentamount" type="hidden" id="paymentamount" value="<?php echo number_format(($amount_to_pay), 2, ".",""); ?>" />
-    					  <input name="paymentdescription" type="hidden" id="paymentdescription" value="<?PHP echo $payment_desc; ?>" />
+    						<input name="studentnumber" type="hidden" id="studentnumber" value="<?= $_SESSION['applicant_details']->Appnum; ?>" />
+    						<input name="sessionid" type="hidden" id="sessionid" value="<?= $_SESSION['current_application_session_ebportaldb']; ?>" />
+    						<input name="paymentid" type="hidden" id="paymentid" value="5" />
+    						<input name="paymentamount" type="hidden" id="paymentamount" value="<?= $_SESSION['amount_to_pay']; ?>" />
+    					  <input name="paymentdescription" type="hidden" id="paymentdescription" value="<?PHP echo $payment_description; ?>" />
     						<button
                   type="submit"
                   name="process" id="process"
