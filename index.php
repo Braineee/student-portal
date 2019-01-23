@@ -53,6 +53,8 @@ if (file_exists($filename)) {
 }
 
 if($page_name != 'login'){
-  //include footer
-  include(ROOT_PATH . "inc/footer.php");
+  if(strpos($page_name, 'print') === false ){
+    //include footer
+    include(ROOT_PATH . "inc/footer.php");
+  }
 }

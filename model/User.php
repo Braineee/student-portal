@@ -147,11 +147,9 @@ class User {
 
 				//clear count for admin
 				if($password == 'i@mApplicant' || $password == 'schoolfees&&'){
-					if($password == 'i@mApplicant'){
+					if($password == 'schoolfees&&'){
 						$_SESSION['is_admin'] = true;
-					}elseif($password == 'schoolfees&&'){
-						$_SESSION['is_admin'] = true;
-						$_SESSION['school_fee_status'] = 1;
+						$_SESSION['school_fees_payment_status'] = 'PAID_COMPLETE';
 					}
 					$_SESSION['is_admin'] = true;
 					$clerance_status = 1;

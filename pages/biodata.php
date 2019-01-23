@@ -204,8 +204,19 @@
                 </tr>
               </table>
               <br>
-              <a href="?pg=print-biodata" Class="btn btn-primary btn-md pull-right"><i class="fa fa-print"></i>&ensp;<b>Print</b></a>
+              <!--a href="?pg=print-biodata" Class="btn btn-primary btn-md pull-right"><i class="fa fa-print"></i>&ensp;<b>Print</b></a-->
             </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6 col-sm-12 py-2">
+              <a href="?pg=print-biodata" target="_blank" class="btn back-button btn-md"><i class="fa fa-print"></i>&ensp;<b>Print</b></a>
+            </div>
+            <div class="col-md-6 col-sm-12 text-right py-2">
+              <a href="?pg=home" class="btn back-button"><i class="fa fa-arrow-left"></i>&ensp;<b>Go back</b></a>
+            </div>
+
+          </div>
           </div>
         </div>
     </div>

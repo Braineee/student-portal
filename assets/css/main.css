@@ -36,6 +36,10 @@
   color:#15291b !important;
 }
 
+.text-green-light{
+  color:#060 !important;
+}
+
 a:hover{
   text-decoration: none;
   color:#15291b;
@@ -82,5 +86,17 @@ a:hover{
 
 .back-button:hover{
   background: #007bff !important;
+  color: #fff;
+}
+
+.admission-button{
+  background-image: -webkit-linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important;  /* Chrome 10-25, Safari 5.1-6 */
+  background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color:#060;;
+  border: solid 1px  #e0e0e0;
+}
+
+.admission-button:hover{
+  background: #060 !important;
   color: #fff;
 }
