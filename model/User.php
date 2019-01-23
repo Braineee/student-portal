@@ -165,6 +165,17 @@ class User {
 					die();
 				}
 
+				//get the user matric number status
+				$get_matric_number = DB_STUDENT::getInstance()
+				->get('student_record', array('appnum','=',$appnum));
+
+				if($get_matric_number->count() > 0){
+					$_SESSION['has_generate_matric'] = true;
+					$_SESSION['applicant_matric_no'] = $get_matric_number->first()->matricnum;
+				}else{
+					$_SESSION['has_generate_matric'] = false;
+				}
+
 				// Get users image
 				$get_picture = DB_EBPORTAL::getInstance()->
 			  get('onlineAppImages', array('appnum','=',$appnum));

@@ -30,15 +30,12 @@
     <small>school fees status:</small><br>
     <img src="<?= BASE_URL ?>assets/icons/status.svg" alt="user_icon" width="20px" height="20px"> &ensp;
     <b><?php if(isset($_SESSION['school_fees_payment_status'])){
-      do_alert($_SESSION['school_fees_payment_status']);
       if($_SESSION['school_fees_payment_status'] == 'NOT_PAID'){echo 'NOT PAID';}
       if($_SESSION['school_fees_payment_status'] == 'NOT_SET'){echo 'SCHOOL FEES NOT SET';}
       if($_SESSION['school_fees_payment_status'] == 'PAID_COMPLETE'){echo 'PAID COMPLETE';}
       if($_SESSION['school_fees_payment_status'] == 'NOT_COMPLETED'){echo 'NOT COMPLETED';}
       if($_SESSION['school_fees_payment_status'] == 'PAYMENT_NOT_DEFINED'){echo 'PAYMENT NOT DEFINED';}
       if($_SESSION['school_fees_payment_status'] == 'NOT_DEFINED'){echo 'NOT DEFINED';}
-    }else{
-      do_alert($_SESSION['school_fees_payment_status']);
     }?></b>
 
   </div>
@@ -46,7 +43,17 @@
   <div>
     <small>Matric generation status:</small><br>
     <img src="<?= BASE_URL ?>assets/icons/status.svg" alt="user_icon" width="20px" height="20px"> &ensp;
-    <b>NOT GENERATED</b>
+    <b>
+      <?php
+        if(isset($_SESSION['has_generate_matric'])){
+          if($_SESSION['has_generate_matric'] == true){
+            echo 'GENERATED';
+          }else{
+            echo 'NOT GENERATED';
+          }
+        }
+      ?>
+    </b>
   </div>
   <br>
   <br>

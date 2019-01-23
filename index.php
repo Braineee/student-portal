@@ -13,7 +13,9 @@ if($applicant->isLoggedin()){
   // Get the user data
   $_SESSION['applicant_details'] = $applicant->data();
 }else{
-  $_GET["pg"] = "login";// go to the login page if the user is not logged in
+  if($_GET["pg"] != 'verify'){
+    $_GET["pg"] = "login";// go to the login page if the user is not logged in
+  }
 }
 
 // Check if pg exits
