@@ -61,6 +61,11 @@ try {
   die("<br><br><br><a href='?pg=home' class='btn btn-success'>Goto homepage</a>");
 }
 
+//initialize payment
+$payment_id = '';
+//check if applicant is fulltime or partime
+$_SESSION['applicant_details']->PTAcronym == 'PT' ? $payment_id = 70 : $payment_id = 5;
+
 ?>
 
 
@@ -157,7 +162,7 @@ try {
                 <hr>
     						<input name="studentnumber" type="hidden" id="studentnumber" value="<?= $_SESSION['applicant_details']->Appnum; ?>" />
     						<input name="sessionid" type="hidden" id="sessionid" value="<?= $_SESSION['current_application_session_ebportaldb']; ?>" />
-    						<input name="paymentid" type="hidden" id="paymentid" value="5" />
+    						<input name="paymentid" type="hidden" id="paymentid" value="<?php if($payment_id == ''){die();}else{echo $payment_id;}; ?>" />
     						<input name="paymentamount" type="hidden" id="paymentamount" value="<?= $_SESSION['amount_to_pay']; ?>" />
     					  <input name="paymentdescription" type="hidden" id="paymentdescription" value="<?PHP echo $payment_description; ?>" />
     						<button

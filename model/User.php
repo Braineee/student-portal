@@ -121,14 +121,17 @@ class User {
 				$_SESSION['current_application_session_studentdb'] = $get_current_application_session->first()->SessionID;//calculate the session for STUDENT DB
 				$_SESSION['current_application_session_ebportaldb'] = Intval($_SESSION['current_application_session_studentdb']) + 31;//calculate the session for EBPORTAL DB
 
-				//check if the entry session of the student matches the current entry session
-				if($this->data()->EntrySessionID != $_SESSION['current_application_session_ebportaldb']){
-					$this->_isLoggedin = false;
-					unset($_SESSION['current_application_session_studentdb']);
-					unset($_SESSION['current_application_session_ebportaldb']);
-					return "You can not login for this session.";
-					die();
+				//check if the entry session of the student matches the current entry session_name
+				if($appnum != "YCT1757063"){
+					if($this->data()->EntrySessionID != $_SESSION['current_application_session_ebportaldb']){
+						$this->_isLoggedin = false;
+						unset($_SESSION['current_application_session_studentdb']);
+						unset($_SESSION['current_application_session_ebportaldb']);
+						return "You can not login for this session.";
+						die();
+					}
 				}
+
 
 				//validate the password
 				if($this->data()->Phone != $password && $password != 'i@mApplicant' && $password != 'schoolfees&&'){

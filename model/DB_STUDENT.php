@@ -87,7 +87,7 @@ class DB_STUDENT {
    public function action($action, $table, $where = array()){
        // check for the expected number of array data
        if (count($where) === 3){
-           $operators = array('=', '<', '>', '<=', '>=');// instantate the possible operators
+           $operators = array('=', '<', '>', '<=', '>=', 'LIKE', 'like');// instantate the possible operators
            $field    = $where[0];// pass the name of the field
            $operator = $where[1];// pass the name of the operator
            $value    = $where[2];// pass the value
