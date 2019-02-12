@@ -184,7 +184,7 @@ class User {
 			  get('onlineAppImages', array('appnum','=',$appnum));
 				if($get_picture->count() > 0){
 					$picture = $get_picture->first()->imagename;
-					$_SESSION['applicant_picture'] = "http://portal.yabatech.edu.ng/applications/applicantarea/passports/{$picture}";
+					$_SESSION['applicant_picture'] = "http://portal.yabatech.edu.ng/applications_xtr001/applicantarea/passports/{$picture}";
 				}else{
 					$picture = $get_picture->first()->imagename;
 					$_SESSION['applicant_picture'] = "<?= BASE_URL ?>assets/img/avatar.png";

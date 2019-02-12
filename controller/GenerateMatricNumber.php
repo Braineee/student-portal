@@ -126,10 +126,25 @@ try{
 
 }
 
-//-----------------------------------------------------------------------------------------END OF CHECKING STATUS----------------------------------------------------------------------------//
+//---------------------END OF CHECKING STATUS-----------------------
 
-var_dump($has_generated_matric_no);
+//var_dump($has_generated_matric_no);
+//generate the students matric Number
+if(!$has_generated_matric_no){
+  include('GetMatricNumber.php');
+}
+//-------------------end of generate matric number-----------------
 
-var_dump($has_been_added_to_student_record_tabled);
+//var_dump($has_been_added_to_student_record_tabled);
+//add the student to the student record table
+if(!$has_been_added_to_student_record_tabled){
+    include('AddToStudentRecord.php');
+}
+//------------------end of regsiter on student record--------------
 
-var_dump($has_been_added_to_summary_table);
+//var_dump($has_been_added_to_summary_table);
+//add the student to the summary table
+if(!$has_been_added_to_summary_table){
+  include('AddToSummaryTable.php');
+}
+//------------------end of regsiter on sumary table----------------
