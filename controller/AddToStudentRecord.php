@@ -159,7 +159,7 @@ try{
     'inactivecount' => 0,
     'password' => str_replace(' ','',$_SESSION['applicant_details']->Surname),
     'DateEdited' => date('Y-m-d'),
-    'TimeEdited' => $time = date('H:i:s'),
+    'TimeEdited' => date('H:i:s'),
     'CourseOptions' => '',
     'Real_Level' => $applicant_level_name,
     'ProgrammeID' => $applicant_programme_id,
