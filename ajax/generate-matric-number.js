@@ -21,11 +21,13 @@ $('document').ready(function(){
             },
             success: function(response){
                 if (response.success){
-                  $('#display-matric-status').html(`<b>${response.success}</b>`);
+                  $('#get_matric').attr('disabled', true);
+                  $('#get_matric').html('<b>Generate matriculation number</b>');
+                  $('#display-matric-status').html(`<h3 class='text-green-light'>Your matric number is: <b>${response.matricnumber}</b></h3>`);
                 }else if(response.error){
                   $('#display-matric-status').html(`<b>${response.error}</b>`);
                 }else{
-                  $('#display-matric-status').html(`<b>${response}</b>`);
+                  //$('#display-matric-status').html(`<b>${response}</b>`);
                 }
             }
         });

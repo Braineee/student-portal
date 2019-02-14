@@ -62,7 +62,7 @@ try{
 
   if($verify_matric_no_generation->count() != 0){
 
-    //$_SESSION['has_generate_matric'] = true;
+    $_SESSION['has_generate_matric'] = true;
     $_SESSION['applicant_matric_no'] =  $verify_matric_no_generation->first()->Matricno;
 
     //update the biodata table with the new matric number

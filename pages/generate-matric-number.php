@@ -67,7 +67,7 @@ if(!isset($_SESSION['applicant_details']->Appnum)){
               ?>
               <form>
                 <input type="hidden" name="form_token" id="form_token" value="<?php echo hash_hmac('sha256', Token::generate_unique('gen_matric'), $token); ?>">
-                <button type="submit"class="btn admission-button" id="get_matric"><b>Generate matriculation number</b></button>
+                <button type="submit" class="btn admission-button" id="get_matric"><b>Generate matriculation number</b></button>
               </form>
               <?php
                   }
