@@ -165,7 +165,7 @@ class DB_EBPORTAL {
     * Parameter = $table(string), $id(integer) $field(array)
     * return type = boolean
    */
-   public function update($table, $id, $fields){
+   public function update($table, $colMatch, $id, $fields){
        $set = '';
        $x = 1;
 
@@ -177,7 +177,7 @@ class DB_EBPORTAL {
            $x++;
        }
 
-       $sql = "UPDATE {$table} SET {$set} WHERE UserId = {$id}";
+       $sql = "UPDATE {$table} SET {$set} WHERE Appnum = '{$id}'";
 
        if(!$this->query($sql, $fields)->error()){
            return true;

@@ -31,7 +31,7 @@ class CrudEbportal {
 			//$this->_db->error_message();
 			throw new Exception('There was a problem creating data');
 		}
-    }
+  }
 
 
     /*
@@ -40,9 +40,17 @@ class CrudEbportal {
 	 * Return type = none
     */
 	public function update($tablename, $colMatch, $id = null, $fields = array()){
+		/*var_dump($tablename);
+		var_dump($colMatch);
+		var_dump($id);
+		var_dump($fields);
+		*/
 		if(!$this->_db->update($tablename, $colMatch, $id, $fields)){
-			throw new Exception('There Was an error Updating.');
+			//var_dump($this->_db);
+			throw new Exception($this->_db->error_message()[2]);
 		}
+
+
 	}
 
 
