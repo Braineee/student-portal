@@ -148,3 +148,22 @@ if(!$has_been_added_to_summary_table){
   include('AddToSummaryTable.php');
 }
 //------------------end of regsiter on sumary table----------------
+
+
+if(
+  $has_been_added_to_summary_table === true &&
+  $has_been_added_to_student_record_tabled === true &&
+  $has_generated_matric_no === true
+){
+  $log = new Logger(ROOT_PATH ."successfully_generated_matric_number.html");
+  $log->setTimestamp("D M d 'y h.i A");
+  $log->putLog("\n Matric number was generated successfully for >>: ".$_SESSION['applicant_matric_no'].">> ".$_SESSION['applicant_details']->Appnum);
+  exit(json_encode(['success' => 'Matric number successfully generated', 'matricnumber' => $_SESSION['applicant_matric_no']]));
+  die();
+}else{
+  $log = new Logger(ROOT_PATH ."generated_matric_number_unsuccessful.html");
+  $log->setTimestamp("D M d 'y h.i A");
+  $log->putLog("\n Matric number is: Could not generate matric number for >> ".$_SESSION['applicant_details']->Appnum);
+  exit(json_encode(['error' => 'An error occured while generating your matric number.']));
+  die();
+}

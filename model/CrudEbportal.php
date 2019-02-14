@@ -28,7 +28,7 @@ class CrudEbportal {
 	*/
 	public function create($tablename, $fields = array()){
 		if (!$this->_db->insert($tablename, $fields)) {
-			//$this->_db->error_message();
+			//var_dump($this->_db);
 			throw new Exception('There was a problem creating data');
 		}
   }
@@ -38,19 +38,13 @@ class CrudEbportal {
 	 * This function updates a table data in the database
 	 * Parameters = $fields(array), $id(integer)
 	 * Return type = none
-    */
+  */
 	public function update($tablename, $colMatch, $id = null, $fields = array()){
-		/*var_dump($tablename);
-		var_dump($colMatch);
-		var_dump($id);
-		var_dump($fields);
-		*/
+
 		if(!$this->_db->update($tablename, $colMatch, $id, $fields)){
 			//var_dump($this->_db);
 			throw new Exception($this->_db->error_message()[2]);
 		}
-
-
 	}
 
 
@@ -63,7 +57,7 @@ class CrudEbportal {
 	public function delete($tablename, $colMatch, $id = null){
 		if(!$this->_db->delete($tablename, array($colMatch, "=", $id))){
 			throw new Exception('There Was an error deleting.');
-        }
+    }
 	}
 
 

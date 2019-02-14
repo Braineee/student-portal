@@ -29,7 +29,7 @@ class CrudStudent {
 	*/
 	public function create($tablename, $fields = array()){
 		if (!$this->_db->insert($tablename, $fields)) {
-			//$this->_db->error_message();
+			//var_dump($this->_db->error_message());
 			throw new Exception('There was a problem creating data');
 		}
   }

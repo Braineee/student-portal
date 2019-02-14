@@ -13,7 +13,7 @@ try{
 
 
   //GET THE PROGRAME TYPE ID
-  switch ($_SESSION['program_type_acronym']) {
+  /*switch ($_SESSION['program_type_acronym']) {
     case 'HND FULL TIME':
         $applicant_programme_type_id = 3;
       break;
@@ -42,7 +42,7 @@ try{
         $log->putLog("\n Error Message: Applicant Programme ID could not be found in Controller/GenerateMatricNumber line 262 >> ".$_SESSION['applicant_details']->Appnum);
         die();
       break;
-  }
+  }*/
   //END OF GET PROGRAM TYPE ID
 
 
@@ -68,7 +68,7 @@ try{
       break;
     case 'B.SC(ED)':
         //check if the student is a directentry
-        if(strpos(,'200') === true){
+        if(strpos($_SESSION['applicant_details']->program,'200') === true){
           $applicant_level_name = 'BSC 2';
           $applicant_level_id = 8;
         }else{
@@ -123,6 +123,7 @@ try{
   $insert_applicant_to_student_record = new CrudStudent();
   $insert_applicant_to_student_record
   ->create('student_record', array(
+    'appnum' => $_SESSION['applicant_details']->Appnum,
     'matricnum' => $_SESSION['applicant_matric_no'],
     'surname' => $_SESSION['applicant_details']->Surname,
     'firstname' => $_SESSION['applicant_details']->Firstname,
@@ -140,7 +141,7 @@ try{
     'parent_guardian' => $_SESSION['applicant_details']->PGName,
     'p_g_address' => $_SESSION['applicant_details']->PGAddress,
     'p_g_phone' => $_SESSION['applicant_details']->PGPhone,
-    'programme_type' => $applicant_programme_type_id,
+    'programme_type' => $_SESSION['program_type_acronym'],
     'acadsession' => $_SESSION['applicant_details']->EntrySession,
     'programme' => $_SESSION['applicant_details']->program,
     'level' => $applicant_level_id,
@@ -171,7 +172,6 @@ try{
   if($insert_applicant_to_student_record){
     $has_been_added_to_student_record_tabled = true;
   }
-
 
 }catch(Exception $e){
   $log = new Logger(ROOT_PATH ."error_log.txt");

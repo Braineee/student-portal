@@ -63,19 +63,17 @@ try{
   if($verify_matric_no_generation->count() != 0){
 
     //$_SESSION['has_generate_matric'] = true;
-    $matricnum=  $verify_matric_no_generation->first()->Matricno;
-    $_SESSION['applicant_matric_no'] = $matricnum;
+    $_SESSION['applicant_matric_no'] =  $verify_matric_no_generation->first()->Matricno;
 
     //update the biodata table with the new matric number
     $update_matricno_on_biodata_table =  new CrudEbportal();
     $update_matricno_on_biodata_table
     ->update('biodata', 'Appnum', $_SESSION['applicant_details']->Appnum, array(
-        'Matricnum' => $matricnum
+        'Matricnum' => $_SESSION['applicant_matric_no']
     ));
 
     $has_generated_matric_no = true;
 
-    die();
   }
 
 }catch(Exception $e){
