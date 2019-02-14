@@ -42,7 +42,7 @@ class CrudEbportal {
 	public function update($tablename, $colMatch, $id = null, $fields = array()){
 
 		if(!$this->_db->update($tablename, $colMatch, $id, $fields)){
-			//var_dump($this->_db);
+			//var_dump($this->_db->error_message());
 			throw new Exception($this->_db->error_message()[2]);
 		}
 	}
