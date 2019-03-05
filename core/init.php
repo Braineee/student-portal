@@ -2,21 +2,21 @@
 // initialize the global variables
 $GLOBALS["config"] = array(
 	"mysql" => array(
-		'host' => '217.174.242.54',
-		'username' => 'david',
-		'password' => 'uX35970dvis6xigbTs',
+		'host' => '',
+		'username' => '',
+		'password' => '',
 		'db' => 'student'
 		),
 	"mssql_ebportal" => array(
-		'host' => '217.174.242.54',
-		'username' => 'ComboEbportal',
-		'password' => 'sxbsx@b++*5495)(5c8Z332m5sagjd9',
+		'host' => '',
+		'username' => '',
+		'password' => '',
 		'db' => 'EBPORTAL'
 		),
 	"mssql_student" => array(
-		'host' => '217.174.242.54',
-		'username' => 'ComboEbportal',
-		'password' => 'sxbsx@b++*5495)(5c8Z332m5sagjd9',
+		'host' => '',
+		'username' => '',
+		'password' => '',
 		'db' => 'student'
 		),
 	"remember" => array(
