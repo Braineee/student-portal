@@ -145,16 +145,28 @@ $_SESSION['applicant_details']->PTAcronym == 'PT' ? $payment_id = 70 : $payment_
                   <?= $_SESSION['applicant_details']->EntrySession ?>
                 </th>
               </tr>
+              <?php if($_SESSION['applicant_details']->PTAcronym == 'PT'){ // show this only if thw applicant is part time?>
               <tr>
                 <td>
                   <img src="<?= BASE_URL ?>assets/icons/status.svg" alt="user_icon" width="20px" height="20px"> &ensp;
-                  <span class="text-muted">Amount:</span>
+                  <span class="text-muted">Amount for half payment:</span>
                 </td>
                 <th>
                   &#8358;<?= number_format($_SESSION['amount_to_pay']); ?>
                 </th>
               </tr>
+            <?php }?>
+              <tr>
+                <td>
+                  <img src="<?= BASE_URL ?>assets/icons/status.svg" alt="user_icon" width="20px" height="20px"> &ensp;
+                  <span class="text-muted">Amount for full payment:</span>
+                </td>
+                <th>
+                  &#8358;<?= number_format($_SESSION['actual_amount']); ?>
+                </th>
+              </tr>
             </table>
+            <?php if($_SESSION['applicant_details']->PTAcronym == 'PT'){ // show this only if thw applicant is part time?>
             <div class="col-md-12 col-sm-12 py-2" >
               <form  method="post" action="http://portal.yabatech.edu.ng/yctpay/" style="border: solid 1px #cb2431; border-radius:5px;" class="px-4 py-4">
                 <span style="color:#cb2431;"><b>Caution.</b></span>
@@ -170,7 +182,27 @@ $_SESSION['applicant_details']->PTAcronym == 'PT' ? $payment_id = 70 : $payment_
                   name="process" id="process"
                   style="margin-top:5px;"
                   class="btn payment-button">
-                  <b>Proceed with payment</b>
+                  <b>Proceed with half payment</b>
+                </button>
+    					</form>
+            </div>
+            <?php }?>
+            <div class="col-md-12 col-sm-12 py-2" >
+              <form  method="post" action="http://portal.yabatech.edu.ng/yctpay/" style="border: solid 1px #cb2431; border-radius:5px;" class="px-4 py-4">
+                <span style="color:#cb2431;"><b>Caution.</b></span>
+                <p>Please ensure you have confirmed your details before proceeding to make this payment.</p>
+                <hr>
+    						<input name="studentnumber" type="hidden" id="studentnumber" value="<?= $_SESSION['applicant_details']->Appnum; ?>" />
+    						<input name="sessionid" type="hidden" id="sessionid" value="<?= $_SESSION['current_application_session_ebportaldb']; ?>" />
+    						<input name="paymentid" type="hidden" id="paymentid" value="<?php if($payment_id == ''){die();}else{echo $payment_id;}; ?>" />
+    						<input name="paymentamount" type="hidden" id="paymentamount" value="<?= $_SESSION['actual_amount']; ?>" />
+    					  <input name="paymentdescription" type="hidden" id="paymentdescription" value="<?PHP echo $payment_description; ?>" />
+    						<button
+                  type="submit"
+                  name="process" id="process"
+                  style="margin-top:5px;"
+                  class="btn payment-button">
+                  <b>Proceed with full payment</b>
                 </button>
     					</form>
             </div>

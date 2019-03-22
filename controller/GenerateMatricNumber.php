@@ -61,6 +61,7 @@ try{
   //checks
   if($get_has_generated_matric_no->count() > 0){
     $has_generated_matric_no = true;
+    $_SESSION['applicant_matric_no'] = $get_has_generated_matric_no->first()->Matricno;
   }
 
 
@@ -158,6 +159,7 @@ if(
   $log = new Logger(ROOT_PATH ."successfully_generated_matric_number.html");
   $log->setTimestamp("D M d 'y h.i A");
   $log->putLog("\n Matric number was generated successfully for >>: ".$_SESSION['applicant_matric_no'].">> ".$_SESSION['applicant_details']->Appnum);
+   $_SESSION['has_generate_matric'] = true;
   exit(json_encode(['success' => 'Matric number successfully generated', 'matricnumber' => $_SESSION['applicant_matric_no']]));
   die();
 }else{
